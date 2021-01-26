@@ -1,0 +1,23 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+#cadre {
+    background-color: beige;
+    border: 1px solid black;
+    width: 750px;
+    height: 500px;
+    margin: 100px auto;
+    overflow: hidden;
+}
+
+.curseur {
+    border-radius: 100%;
+    background-color: blue;
+    border: 0.5px solid black;
+    width: 30px;
+    height: 30px;
+    opacity: 40%;
+    position: absolute;
+}
