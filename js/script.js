@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    const cursor = document.querySelector('.curseur');
+    const cursor = document.querySelector('#curseur');
     document.addEventListener('mousemove', e => {
         cursor.style.left = e.pageX - 15 + 'px';
         cursor.style.top = e.pageY - 15 + 'px';
@@ -13,7 +13,7 @@ $(document).ready(function(){
     
     $("#cadre").mouseenter(function(){
         console.log("entrer");
-        $(this).css({cursor: "url('cursor.png')"});
+        $(this).css({cursor: "none"});
     });
     
 

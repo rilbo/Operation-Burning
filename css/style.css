@@ -1,23 +1,25 @@
 html, body {
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: left;
 }
 
 #cadre {
+    position: absolute;
     background-color: beige;
     border: 1px solid black;
     width: 750px;
     height: 500px;
-    margin: 100px auto;
     overflow: hidden;
 }
 
-.curseur {
-    border-radius: 100%;
+#curseur {
     background-color: blue;
-    border: 0.5px solid black;
+    position: relative;
     width: 30px;
     height: 30px;
+    border-radius: 100%;
+    border: 0.75px solid black;
     opacity: 40%;
-    position: absolute;
 }
