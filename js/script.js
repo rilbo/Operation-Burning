@@ -3,7 +3,7 @@ $(document).ready(function(){
     const cursor = document.querySelector('#curseur');
     document.addEventListener('mousemove', e => {
         cursor.style.left = e.pageX - 15 + 'px';
-        cursor.style.top = e.pageY - 65 + 'px';
+        cursor.style.top = e.pageY - 15 + 'px';
     })
 
     $('#cadre').mouseleave(function(){
@@ -16,7 +16,7 @@ $(document).ready(function(){
         $(this).css({cursor: "none"});
     });
 
-    var total_secondes = 60;
+    var total_secondes = 9999;
     total_secondes += 1;
     var tps = document.getElementById("temps");
 
@@ -28,9 +28,9 @@ $(document).ready(function(){
             prompt("Entre ton Prénom", "Michel");
         }
         else {
-        tps.innerHTML = "Temps : " + total_secondes + "s";
-        console.log("test");
-        setTimeout(function(){ decompte(); }, 1000);
+            tps.innerHTML = "Temps : " + total_secondes + "s";
+            console.log("test");
+            setTimeout(function(){ decompte(); }, 1000);
         }
     }
     decompte();

@@ -16,7 +16,7 @@ html, body {
 
 #curseur {
     background-color: blue;
-    position: relative;
+    position: absolute;
     width: 30px;
     height: 30px;
     border-radius: 100%;
@@ -37,4 +37,18 @@ html, body {
     width: auto;
     font-size: 2em;
     padding: 2px;
+}
+
+#zone_jeu {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(247, 196, 129);
+    margin: 25px auto;
+}
+
+.objet {
+    width: 15%;
+    height: 15%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
 }
