@@ -16,12 +16,13 @@ html, body {
 
 #curseur {
     background-color: blue;
-    position: relative;
+    position: absolute;
     width: 30px;
     height: 30px;
     border-radius: 100%;
     border: 0.75px solid black;
     opacity: 40%;
+    display: none;
 }
 
 #bar {
@@ -37,4 +38,18 @@ html, body {
     width: auto;
     font-size: 2em;
     padding: 2px;
+}
+
+#zone_jeu {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(247, 196, 129);
+    margin: 50px auto;
+}
+
+.objet {
+    width: 10%;
+    height: 10%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
 }
