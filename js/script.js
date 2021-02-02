@@ -11,9 +11,9 @@ $(document).ready(function(){
         $(this).css({cursor: "auto"}); 
     });
     
-    $("#cadre").mouseenter(function(){
+    $("#cadre").mousemove(function(){
         console.log("entrée");
-        //$(this).css({cursor: "none"});
+        $(this).css({cursor: "none"});
     });
 
     var total_secondes = 9999;
@@ -43,7 +43,7 @@ $(document).ready(function(){
     $('.objet').attr('hp', flame_max_health);
 
 
-    $('.objet').click(function(){
+    $('.objet').mouseover(function(){
         if($(this).css('opacity') == 1){
             flame_health = $(this).attr('hp');
             flame_health--;
