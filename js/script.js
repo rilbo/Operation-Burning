@@ -9,14 +9,16 @@ $(document).ready(function(){
     $('#cadre').mouseleave(function(){
         console.log("sortie");
         $(this).css({cursor: "auto"}); 
+        $('#curseur').css({display: "none"});
     });
     
     $("#cadre").mouseenter(function(){
         console.log("entrée");
-        //$(this).css({cursor: "none"});
+        $(this).css({cursor: "none"});
+        $('#curseur').css({display: "block"});
     });
 
-    var total_secondes = 9999;
+    var total_secondes = 9999; //Changez ici pour le temps
     total_secondes ++;
     var tps = document.getElementById("temps");
 
@@ -37,29 +39,35 @@ $(document).ready(function(){
 
     var score = document.getElementById("score");
     var total_score = 0;
+    var flame_health = 0;
+    var flame_max_health = 3; //Changez ici pour la difficulté
 
-    $('.objet').click(function(){
-        if($(this).css('opacity') == 0){
-        }
-        else {
+    $('.objet').attr('hp', flame_max_health);
 
-            if ($(this).attr('id') == 'obj1'){
-                $(this).removeAttr('id');
-                $(this).attr('id', 'obj2');
-                console.log("2");
-            }
-            else if ($(this).attr('id') == 'obj2'){
-                $(this).removeAttr('id');
-                $(this).attr('id', 'obj3');
-                console.log("3");
+
+    $('.objet').mouseover(function(){
+        if($(this).css('opacity') == 1){
+            flame_health = $(this).attr('hp');
+            flame_health--;
+            console.log('vie restante : ' + flame_health);
+            width = $(this).width() * 0.7;
+            height = $(this).height() * 0.7;
+            $(this).css({
+                width: width,
+                height: height,
+              });
+
+            if (flame_health <= 0){
+                $(this).removeAttr('hp');
+                console.log("flamme éteinte");
                 $(this).css({opacity:"0"});
 
                 total_score ++;
                 score.innerHTML = "Score : " + total_score;
             }
-            else {
-                $(this).attr('id', 'obj1');
-                console.log("1");
+            else if (flame_health > 0){
+                $(this).removeAttr('hp');
+                $(this).attr('hp', flame_health);
             }
         }
     });

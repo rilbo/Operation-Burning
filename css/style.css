@@ -3,6 +3,12 @@ html, body {
     margin: 0;
     display: flex;
     justify-content: left;
+    font-family: 'Press Start 2P', cursive;
+}
+
+p {
+    padding: 0;
+    margin: 0;
 }
 
 #cadre {
@@ -22,7 +28,7 @@ html, body {
     border-radius: 100%;
     border: 0.75px solid black;
     opacity: 40%;
-    display: none;
+    pointer-events: none;
 }
 
 #bar {
@@ -30,26 +36,39 @@ html, body {
     justify-content: space-between;
     width: 100%;
     height: 10%;
-    background-color: aqua;
+    background-color: black;
 }
 
 .info {
-    border: 1px solid black;
     width: auto;
-    font-size: 2em;
-    padding: 2px;
+    font-size: 1em;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+    pointer-events: none;
 }
 
-#zone_jeu {
+.zone_jeu {
     display: flex;
     justify-content: space-around;
-    background-color: rgb(247, 196, 129);
+    /*background-color: rgb(247, 196, 129);*/
     margin: 50px auto;
+    width: 100%;
+    height: 19%;
+}
+
+.zone_jeu  > div{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .objet {
-    width: 10%;
-    height: 10%;
+    width: 60%;
+    height: 100%;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
 }
