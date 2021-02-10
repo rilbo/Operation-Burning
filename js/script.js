@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 
     $('.objet').attr('hp', flame_max_health);
-    $('.objet').css({display: "none"});
+    //$('.objet').css({display: "none"});
 
 
     $('.objet').mouseover(function(){
