@@ -75,14 +75,15 @@ $(document).ready(function(){
     });
 
     srcFeu = "img/feu_pos_";
+    srcEau = "img/eau_pos_";
     compteur = 1;   
 
     function mouvement()
     {
         
         $('.objet').attr('src', srcFeu + compteur + ".png");
+        $('#eau').attr('src', srcEau + compteur + ".png");
         compteur++;
-        console.log('boucle');
 
         if(compteur >= 4){
             compteur = 1;
