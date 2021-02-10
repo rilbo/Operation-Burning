@@ -16,6 +16,7 @@ $(document).ready(function(){
         console.log("entrée");
         $(this).css({cursor: "none"});
         $('#curseur').css({display: "block"});
+
     });
 
     var total_secondes = 9999; //Changez ici pour le temps
@@ -42,35 +43,68 @@ $(document).ready(function(){
     var flame_health = 0;
     var flame_max_health = 3; //Changez ici pour la difficulté
 
+    
+    //$('.objetFeu').css({display: "none"});
+    
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+      
+      let nomClasse = ["barbecue", "voiture1", "batiment", "poubelle", "arbre", "maison", "voiture2", "baril"]
+      let compteurtab = 8;
 
-    $('.objet').attr('hp', flame_max_health);
-    $('.objet').css({display: "none"});
+    function apparitionFlamme(){
+        console.log(nomClasse);
+        var choixalea = getRandomInt(compteurtab);
+        compteurtab -- ;
+        var choixImg = nomClasse[choixalea];
+        console.log(choixImg);
+        console.log(choixalea);
+        $('#'+choixImg).removeClass("objet").addClass("objetFeu");
+        $(".objetFeu").attr('src','img/feu.png'); 
+        nomClasse.splice(choixalea, 1);
+        console.log(nomClasse);
+        eteindreFlamme();
+    }
 
 
-    $('.objet').mouseover(function(){
-        if($(this).css('opacity') == 1){
-            flame_health = $(this).attr('hp');
-            flame_health--;
-            console.log('vie restante : ' + flame_health);
-            width = $(this).width() * 0.7;
-            height = $(this).height() * 0.7;
-            $(this).css({
-                width: width,
-                height: height,
-              });
+    apparitionFlamme();
 
-            if (flame_health <= 0){
-                $(this).removeAttr('hp');
-                console.log("flamme éteinte");
-                $(this).css({opacity:"0"});
+    
 
-                total_score ++;
-                score.innerHTML = "Score : " + total_score;
+    function eteindreFlamme(){
+
+        $('.objetFeu').attr('hp', flame_max_health);
+        $('.objetFeu').mouseover(function(){
+            if($(this).css('opacity') == 1){
+                flame_health = $(this).attr('hp');
+                flame_health--;
+                console.log('vie restante : ' + flame_health);
+                width = $(this).width() * 0.7;
+                height = $(this).height() * 0.7;
+                $(this).css({
+                    width: width,
+                    height: height,
+                  });
+    
+                if (flame_health <= 0){
+                    $(this).removeAttr('hp');
+                    console.log("flamme éteinte");
+                    $(this).css({opacity:"0"});
+                    
+                    total_score ++;
+                    score.innerHTML = "Score : " + total_score;
+                    apparitionFlamme();
+                }
+                else if (flame_health > 0){
+                    $(this).removeAttr('hp');
+                    $(this).attr('hp', flame_health);
+                    
+                }
             }
-            else if (flame_health > 0){
-                $(this).removeAttr('hp');
-                $(this).attr('hp', flame_health);
-            }
-        }
-    });
+        });
+    }
+    
+
+    
 });

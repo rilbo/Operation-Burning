@@ -56,6 +56,7 @@ p {
     margin: 50px auto;
     width: 100%;
     height: 19%;
+    z-index: 10;
 }
 
 .zone_jeu  > div{
@@ -66,9 +67,16 @@ p {
     align-items: center;
 }
 
-.objet {
+.objetFeu{
     width: 60%;
     height: 100%;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
 }
+
+img{
+    height: 60%;
+}
+
+
+
