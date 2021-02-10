@@ -92,4 +92,19 @@ $(document).ready(function(){
     }
     mouvement();
 
+    function pinpon()
+    {
+        if($('#curseur').css('left') <= '300px'){
+            $('#pompier').attr('src', "img/pompier_vise_gauche.png");
+        }
+        else if($('#curseur').css('left') >= '430px'){
+            $('#pompier').attr('src', "img/pompier_vise_droite.png");
+        }
+        else{
+            $('#pompier').attr('src', "img/pompier_vise_milieu.png");
+        }
+    setTimeout(function(){ pinpon(); }, 250);
+    }
+    pinpon();
+
 });
