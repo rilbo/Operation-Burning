@@ -4,7 +4,7 @@
   - Ronan POULHALEC : poulhron
   - Valentin MULLER : rilbo
   - Pierre VAUCHEL : PierreVauchel
-  - Tom ROMAIN :Kapush0n
+  - Tom ROMAIN : Kapush0n
 
 > Le project Opertation Burning est
 > un projet réalisé dans le cadre
