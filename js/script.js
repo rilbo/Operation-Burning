@@ -42,7 +42,9 @@ $(document).ready(function(){
     var flame_health = 0;
     var flame_max_health = 3; //Changez ici pour la difficulté
 
+
     $('.objet').attr('hp', flame_max_health);
+    $('.objet').css({display: "none"});
 
 
     $('.objet').mouseover(function(){
