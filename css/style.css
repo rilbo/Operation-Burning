@@ -12,8 +12,11 @@ p {
 }
 
 #cadre {
+    background-image: url("../img/fond.png");
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    background-size: cover;
     position: absolute;
-    background-color: beige;
     border: 1px solid black;
     width: 750px;
     height: 500px;
