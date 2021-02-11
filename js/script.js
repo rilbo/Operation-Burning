@@ -54,26 +54,16 @@ $(document).ready(function(){
       let compteurtab = 8;
 
     function apparitionFlamme(){
-        console.log(nomClasse);
         var choixalea = getRandomInt(compteurtab);
         compteurtab -- ;
         var choixImg = nomClasse[choixalea];
-        console.log(choixImg);
-        console.log(choixalea);
         $('#'+choixImg).removeClass("objet").addClass("objetFeu");
         $(".objetFeu").attr('src','img/feu_pos_1.png'); 
-        
         nomClasse.splice(choixalea, 1);
-        
-        console.log(nomClasse);
-
-
         eteindreFlamme(); 
     }
 
     apparitionFlamme();
-
-    
 
     function eteindreFlamme(){
 
@@ -98,13 +88,7 @@ $(document).ready(function(){
                     total_score ++;
                     score.innerHTML = "Score : " + total_score;
 
-                    
-
                     apparitionFlamme();
-
-                    
-
-                    
                 }
                 else if (flame_health > 0){
                     $(this).removeAttr('hp');
@@ -115,11 +99,6 @@ $(document).ready(function(){
 
         });
     }
-    
-
-    
-
-        
 
     srcFeu = "img/feu_pos_";
     srcEau = "img/eau_pos_";
