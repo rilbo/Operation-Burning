@@ -12,8 +12,11 @@ p {
 }
 
 #cadre {
+    background-image: url("../img/fond.png");
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    background-size: cover;
     position: absolute;
-    background-color: beige;
     border: 1px solid black;
     width: 750px;
     height: 500px;
@@ -21,14 +24,19 @@ p {
 }
 
 #curseur {
-    background-color: blue;
+    background-repeat: no-repeat;
     position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    border: 0.75px solid black;
-    opacity: 40%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
     pointer-events: none;
+}
+
+#curseur img{
+    position: absolute;
+    top: -22px;
+    left: -25px;
+    height: 75px;
+    width: 75px;
 }
 
 #bar {

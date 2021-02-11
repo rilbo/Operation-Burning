@@ -61,11 +61,12 @@ $(document).ready(function(){
         console.log(choixImg);
         console.log(choixalea);
         $('#'+choixImg).removeClass("objet").addClass("objetFeu");
-        $(".objetFeu").attr('src','img/feu.png'); 
+        $(".objetFeu").attr('src','img/feu_pos_1.png'); 
         
         nomClasse.splice(choixalea, 1);
         
         console.log(nomClasse);
+
 
         eteindreFlamme(); 
     }
@@ -111,9 +112,46 @@ $(document).ready(function(){
                     
                 }
             }
+
         });
     }
     
 
     
+
+        
+
+    srcFeu = "img/feu_pos_";
+    srcEau = "img/eau_pos_";
+    compteur = 1;   
+
+    function mouvement()
+    {
+        
+        $('.objetFeu').attr('src', srcFeu + compteur + ".png");
+        $('#eau').attr('src', srcEau + compteur + ".png");
+        compteur++;
+
+        if(compteur >= 4){
+            compteur = 1;
+        }
+    setTimeout(function(){ mouvement(); }, 100);
+    }
+    mouvement();
+
+    function pinpon()
+    {
+        if($('#curseur').css('left') <= '300px'){
+            $('#pompier').attr('src', "img/pompier_vise_gauche.png");
+        }
+        else if($('#curseur').css('left') >= '430px'){
+            $('#pompier').attr('src', "img/pompier_vise_droite.png");
+        }
+        else{
+            $('#pompier').attr('src', "img/pompier_vise_milieu.png");
+        }
+    setTimeout(function(){ pinpon(); }, 250);
+    }
+    pinpon();
+
 });
