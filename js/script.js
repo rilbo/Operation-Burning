@@ -62,11 +62,13 @@ $(document).ready(function(){
         console.log(choixalea);
         $('#'+choixImg).removeClass("objet").addClass("objetFeu");
         $(".objetFeu").attr('src','img/feu.png'); 
+        
         nomClasse.splice(choixalea, 1);
+        
         console.log(nomClasse);
-        eteindreFlamme();
-    }
 
+        eteindreFlamme(); 
+    }
 
     apparitionFlamme();
 
@@ -94,7 +96,14 @@ $(document).ready(function(){
                     
                     total_score ++;
                     score.innerHTML = "Score : " + total_score;
+
+                    
+
                     apparitionFlamme();
+
+                    
+
+                    
                 }
                 else if (flame_health > 0){
                     $(this).removeAttr('hp');
