@@ -1,10 +1,57 @@
 $(document).ready(function(){
 
+    $('#selection p').hover(function(){
+        RandomColor = Math.floor(Math.random()*16777215).toString(16);
+        $(this).css('background-color', '#' + RandomColor);
+
+        var complement = 0xffffff ^ RandomColor;
+        $(this).css('color', '#' + complement);
+        
+    });
+
+    $('#selection p').mouseleave(function(){
+        $(this).css('background-color', 'white');
+        $(this).css('color', 'black');
+    });
+
+    $('#start').hover(function(){
+        $(this).css('background-color', 'white');
+        $(this).css('color', 'black');
+    });
+
+    $('#start').mouseleave(function(){
+        $(this).css('background-color', 'black');
+        $(this).css('color', 'white');
+    });
+
+    $('#facile').click(function(){
+        vie.innerHTML = "Vie des flammes : 3";
+        
+    });
+
+    $('#moyen').click(function(){
+        vie.innerHTML = "Vie des flammes : 5";
+        
+    });
+
+    $('#diff').click(function(){
+        vie.innerHTML = "Vie des flammes : 8";
+        
+    });
+
+    $('#start').click(function(){
+        $('#menu').css('display', 'none');
+        decompte();
+        mouvement();
+    });
+
+
+
     const cursor = document.querySelector('#curseur');
     document.addEventListener('mousemove', e => {
         cursor.style.left = e.pageX - 15 + 'px';
         cursor.style.top = e.pageY - 15 + 'px';
-    })
+    });
 
     $('#cadre').mouseleave(function(){
         console.log("sortie");
@@ -16,7 +63,6 @@ $(document).ready(function(){
         console.log("entrée");
         $(this).css({cursor: "none"});
         $('#curseur').css({display: "block"});
-
     });
 
     var total_secondes = 9999; //Changez ici pour le temps
@@ -35,7 +81,6 @@ $(document).ready(function(){
             setTimeout(function(){ decompte(); }, 1000);
         }
     }
-    decompte();
 
 
     var score = document.getElementById("score");
@@ -116,7 +161,6 @@ $(document).ready(function(){
         }
     setTimeout(function(){ mouvement(); }, 100);
     }
-    mouvement();
 
     function pinpon()
     {
