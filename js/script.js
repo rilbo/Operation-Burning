@@ -24,27 +24,44 @@ $(document).ready(function(){
         $(this).css('color', 'white');
     });
 
+    var flame_max_health = 3;
+
     $('#facile').click(function(){
         vie.innerHTML = "Vie des flammes : 3";
-        
+        var flame_max_health = 3;
     });
 
     $('#moyen').click(function(){
         vie.innerHTML = "Vie des flammes : 5";
-        
+        var flame_max_health = 5;
     });
 
     $('#diff').click(function(){
         vie.innerHTML = "Vie des flammes : 8";
-        
+        var flame_max_health = 8;
     });
 
     $('#start').click(function(){
         $('#menu').css('display', 'none');
         decompte();
-        mouvement();
     });
 
+    for (var i = 0; i <= 8; i++) {
+        randSrc = getRandomInt(8);
+        console.log(randSrc);
+        $("#" + i).attr('src','img/' + randSrc +'.png');
+
+        if(randSrc == 0 || randSrc == 7) {
+            $("#" + i).css('height', '50%');
+            console.log('voiture');
+        }
+        else if(randSrc == 1) {
+            $("#" + i).css('height', '100%');
+            console.log('arbre');
+        }
+      }
+    
+    
 
 
     const cursor = document.querySelector('#curseur');
@@ -66,12 +83,12 @@ $(document).ready(function(){
     });
 
     var total_secondes = 9999; //Changez ici pour le temps
-    total_secondes ++;
     var tps = document.getElementById("temps");
 
     function decompte()
     {
         total_secondes -= 1;
+        console.log
 
         if(total_secondes <= 0){
             prompt("Entre ton Prénom", "Michel");
@@ -86,16 +103,14 @@ $(document).ready(function(){
     var score = document.getElementById("score");
     var total_score = 0;
     var flame_health = 0;
-    var flame_max_health = 3; //Changez ici pour la difficulté
-
     
     //$('.objetFeu').css({display: "none"});
     
-    function getRandomInt(max) {
+    function getRandomInt(max){
         return Math.floor(Math.random() * Math.floor(max));
       }
       
-      let nomClasse = ["barbecue", "voiture1", "batiment", "poubelle", "arbre", "maison", "voiture2", "baril"]
+      let nomClasse = ["barbecue", "voiture1", "batiment", "poubelle", "arbre", "maison", "voiture2", "baril"];
       let compteurtab = 8;
 
     function apparitionFlamme(){
@@ -103,7 +118,7 @@ $(document).ready(function(){
         compteurtab -- ;
         var choixImg = nomClasse[choixalea];
         $('#'+choixImg).removeClass("objet").addClass("objetFeu");
-        $(".objetFeu").attr('src','img/feu_pos_1.png'); 
+        $(".objetFeu").attr('src','img/feu_pos_1.png');
         nomClasse.splice(choixalea, 1);
         eteindreFlamme(); 
     }
@@ -141,7 +156,6 @@ $(document).ready(function(){
                     
                 }
             }
-
         });
     }
 
@@ -149,8 +163,7 @@ $(document).ready(function(){
     srcEau = "img/eau_pos_";
     compteur = 1;   
 
-    function mouvement()
-    {
+    function mouvement(){
         
         $('.objetFeu').attr('src', srcFeu + compteur + ".png");
         $('#eau').attr('src', srcEau + compteur + ".png");
@@ -161,9 +174,9 @@ $(document).ready(function(){
         }
     setTimeout(function(){ mouvement(); }, 100);
     }
+    mouvement();
 
-    function pinpon()
-    {
+    function pinpon(){
         if($('#curseur').css('left') <= '300px'){
             $('#pompier').attr('src', "img/pompier_vise_gauche.png");
         }
