@@ -121,7 +121,6 @@ p {
 }
 
 .objetFeu {
-    height: 100%;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
 }
