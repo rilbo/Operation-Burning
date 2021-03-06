@@ -56,32 +56,27 @@ $(document).ready(function(){
         $('#start').css('pointer-events', 'auto');
     });
 
-    $('#start').click(function(){
-        $('#menu').css('display', 'none');
-        decompte();
-        boucleApparition();
-    });
         //fin Menu
 
         //Img alea
-        function randImg(){
+        function randImg(id){
             randSrc = getRandomInt(8);
-            $("#" + i).attr('src','img/' + randSrc +'.png');
-            $("#" + i).css('height', '80%');
+            $("#" + id).attr('src','img/' + randSrc +'.png');
+            $("#" + id).css('height', '80%');
     
     
             if(randSrc == 0 || randSrc == 7) {
-                $("#" + i).css('height', '50%');
+                $("#" + id).css('height', '50%');
                 //console.log('voiture');
             }
             else if(randSrc == 1) {
-                $("#" + i).css('height', '100%');
+                $("#" + id).css('height', '100%');
                 //console.log('arbre');
             }
         }
 
         for (var i = 0; i <= 8; i++) {
-            randImg();
+            randImg(i);
         }
     
         //Curseur
@@ -111,7 +106,7 @@ $(document).ready(function(){
     {
         total_secondes -= 1;
 
-        if(total_secondes <= 0){
+        if((total_secondes <= 0) || (total_flammes >= 8)){
             prompt("Entre ton Prénom", "Michel");
         }
         else {
@@ -120,24 +115,21 @@ $(document).ready(function(){
         }
     }
 
-        //Apparition des flammes 
+        //Gestion du game over + apparition des flammes 
     
     total_flammes = 0;
 
     function apparitionFlamme(){
-        var choixalea = getRandomInt(9);
+        var choixalea = getRandomInt(8) + 1;
 
         if($('#' + choixalea).attr('class') == "objetFeu"){
             console.log("oups");
             return 0;
         }
         else {
-            $('#' + choixalea).removeClass("objet").addClass("objetFeu");
+            $('#' + choixalea).addClass("objetFeu");
             $('.objetFeu').attr('src', srcFeu + compteur + ".png");
             $('.objetFeu').attr('hp', flame_max_health);
-
-            total_flammes++;
-            console.log(total_flammes);
             return 1;
         }
         
@@ -146,15 +138,11 @@ $(document).ready(function(){
         rep = apparitionFlamme();
 
         if(rep == 1){
-
-            if(total_flammes > 8){
-                prompt("Entre ton Prénom", "Michel");
-            }
-            else {
-                setTimeout(function(){ boucleApparition(); }, localDifficulty);
-            }
+            total_flammes++;
+            console.log(total_flammes);
+            setTimeout(function(){ boucleApparition(); }, localDifficulty);
         }
-        else if(rep == 0){
+        else {
             boucleApparition();
         }
     }
@@ -165,8 +153,8 @@ $(document).ready(function(){
     var total_score = 0;
     var flame_health = 0;
 
-    $('.objetFeu').hover(function(){
-        console.log("hover feu !");
+    $('.objetFeu').mouseover(function(){
+        console.log("hover feu");
         if($(this).css('opacity') == 1){
             flame_health = $(this).attr('hp');
             flame_health--;
@@ -176,22 +164,23 @@ $(document).ready(function(){
             $(this).css({
                 width: width,
                 height: height,
-                });
+            });
 
             if (flame_health <= 0){
                 $(this).removeAttr('hp');
                 console.log("flamme éteinte");
+                total_flammes--;
+
+                CurrentID = $(this).attr('id')
+                randImg(CurrentID);
                 $(this).css({opacity:"0"});
-                
+
                 total_score ++;
                 score.innerHTML = "Score : " + total_score;
-
-                apparitionFlamme();
             }
             else if (flame_health > 0){
                 $(this).removeAttr('hp');
                 $(this).attr('hp', flame_health);
-                
             }
         }
     });
@@ -229,4 +218,13 @@ $(document).ready(function(){
     }
     pinpon();
 
+
+    $('#start').click(function(){
+        $('#menu').css('display', 'none');
+        decompte();
+        boucleApparition();
+    });
+
+    $('.objet').mouseover(function(){
+    });
 });
