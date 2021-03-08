@@ -62,15 +62,21 @@ $(document).ready(function(){
         function randImg(id){
             randSrc = getRandomInt(8);
             $("#" + id).attr('src','img/' + randSrc +'.png');
-            $("#" + id).css('height', '80%');
+            $('#' + id).removeClass("objetFeu");
+            $('#' + id).addClass("objet");
+            $('#' + id).width('35%');
+            $('#' + id).height('65%');
+
     
     
             if(randSrc == 0 || randSrc == 7) {
-                $("#" + id).css('height', '50%');
+                $('#' + id).height('50%');
+                $('#' + id).width('60%');
                 //console.log('voiture');
             }
             else if(randSrc == 1) {
-                $("#" + id).css('height', '100%');
+                $('#' + id).height('100%');
+                $('#' + id).width('25%');
                 //console.log('arbre');
             }
         }
@@ -99,7 +105,7 @@ $(document).ready(function(){
     });
 
         //Decompte du temps
-    var total_secondes = 9999; //Changez ici pour le temps
+    var total_secondes = 30; //Changez ici pour le temps
     var tps = document.getElementById("temps");
 
     function decompte()
@@ -128,9 +134,12 @@ $(document).ready(function(){
         }
         else {
             $('#' + choixalea).addClass("objetFeu");
-            $('.objetFeu').attr('src', srcFeu + compteur + ".png");
-            $('.objetFeu').attr('hp', flame_max_health);
-            return 1;
+            $('#' + choixalea).removeClass("objet");
+            $('#' + choixalea).attr('src', srcFeu + compteur + ".png");
+            $('#' + choixalea).attr('hp', flame_max_health);
+            $('#' + choixalea).height('100%');
+            $('#' + choixalea).width('55%');
+        return 1;
         }
         
     }
@@ -153,9 +162,9 @@ $(document).ready(function(){
     var total_score = 0;
     var flame_health = 0;
 
-    $('.objetFeu').mouseover(function(){
-        console.log("hover feu");
-        if($(this).css('opacity') == 1){
+    $('.objet').click(function(){
+        if($(this).attr('class') == "objetFeu"){
+            console.log("hover feu");
             flame_health = $(this).attr('hp');
             flame_health--;
             console.log('vie restante : ' + flame_health);
@@ -171,9 +180,8 @@ $(document).ready(function(){
                 console.log("flamme éteinte");
                 total_flammes--;
 
-                CurrentID = $(this).attr('id')
+                CurrentID = $(this).attr('id');
                 randImg(CurrentID);
-                $(this).css({opacity:"0"});
 
                 total_score ++;
                 score.innerHTML = "Score : " + total_score;
@@ -193,7 +201,6 @@ $(document).ready(function(){
     function mouvement(){
         
         $('.objetFeu').attr('src', srcFeu + compteur + ".png");
-        $('.objetFeu').css('height', '100%');
         $('#eau').attr('src', srcEau + compteur + ".png");
         compteur++;
 

@@ -11,6 +11,14 @@ p {
     margin: 0;
 }
 
+.unselectable { 
+    -webkit-user-select: none; 
+    -webkit-touch-callout: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;    
+    } 
+
 #cadre {
     background-image: url("../img/fond.png");
     image-rendering: pixelated;
