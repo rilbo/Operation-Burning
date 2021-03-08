@@ -29,33 +29,6 @@ $(document).ready(function(){
         $(this).css('color', 'white');
     });
 
-    var flame_max_health = 3;
-    var localDifficulty = 1200;
-
-    $('#facile').click(function(){
-        vie.innerHTML = "Vie des flammes : 3";
-        var flame_max_health = 3;
-        var localDifficulty = 1200;
-        $('#start').css('opacity', '1');
-        $('#start').css('pointer-events', 'auto');
-    });
-
-    $('#moyen').click(function(){
-        vie.innerHTML = "Vie des flammes : 5";
-        var flame_max_health = 5;
-        var localDifficulty = 800;
-        $('#start').css('opacity', '1');
-        $('#start').css('pointer-events', 'auto');
-    });
-
-    $('#diff').click(function(){
-        vie.innerHTML = "Vie des flammes : 8";
-        var flame_max_health = 8;
-        var localDifficulty = 600;
-        $('#start').css('opacity', '1');
-        $('#start').css('pointer-events', 'auto');
-    });
-
         //fin Menu
 
         //Img alea
@@ -93,13 +66,11 @@ $(document).ready(function(){
     });
 
     $('#cadre').mouseleave(function(){
-        console.log("sortie");
         $(this).css({cursor: "auto"}); 
         $('#curseur').css({display: "none"});
     });
     
     $("#cadre").mouseenter(function(){
-        console.log("entrée");
         $(this).css({cursor: "none"});
         $('#curseur').css({display: "block"});
     });
@@ -114,6 +85,7 @@ $(document).ready(function(){
 
         if((total_secondes <= 0) || (total_flammes >= 8)){
             prompt("Entre ton Prénom", "Michel");
+            $('#menu').css('display', 'block');
         }
         else {
             tps.innerHTML = "Temps : " + total_secondes + "s";
@@ -129,7 +101,6 @@ $(document).ready(function(){
         var choixalea = getRandomInt(8) + 1;
 
         if($('#' + choixalea).attr('class') == "objetFeu"){
-            console.log("oups");
             return 0;
         }
         else {
@@ -148,8 +119,11 @@ $(document).ready(function(){
 
         if(rep == 1){
             total_flammes++;
-            console.log(total_flammes);
+            //console.log("total_flammes : " + total_flammes);
             setTimeout(function(){ boucleApparition(); }, localDifficulty);
+        }
+        else if((total_secondes <= 0) || (total_flammes >= 8)){
+            console.log("Partie terminée !");
         }
         else {
             boucleApparition();
@@ -162,12 +136,11 @@ $(document).ready(function(){
     var total_score = 0;
     var flame_health = 0;
 
-    $('.objet').click(function(){
+    $('.objet').mouseover(function(){
         if($(this).attr('class') == "objetFeu"){
-            console.log("hover feu");
             flame_health = $(this).attr('hp');
             flame_health--;
-            console.log('vie restante : ' + flame_health);
+            //console.log('vie restante : ' + flame_health);
             width = $(this).width() * 0.7;
             height = $(this).height() * 0.7;
             $(this).css({
@@ -177,7 +150,7 @@ $(document).ready(function(){
 
             if (flame_health <= 0){
                 $(this).removeAttr('hp');
-                console.log("flamme éteinte");
+                //console.log("flamme éteinte");
                 total_flammes--;
 
                 CurrentID = $(this).attr('id');
@@ -232,6 +205,16 @@ $(document).ready(function(){
         boucleApparition();
     });
 
-    $('.objet').mouseover(function(){
-    });
 });
+
+var flame_max_health;
+var localDifficulty;
+
+function menu(a, b){
+    vie.innerHTML = "Vie des flammes : " + a;
+    flame_max_health = a;
+    localDifficulty = b;
+    console.log("flame_max_health : " + flame_max_health + " | localDifficulty : " + localDifficulty);
+    $('#start').css('opacity', '1');
+    $('#start').css('pointer-events', 'auto');
+}
